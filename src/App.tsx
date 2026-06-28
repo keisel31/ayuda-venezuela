@@ -412,20 +412,34 @@ function App() {
                   {reportLabels[selectedReport.type]}
                 </div>
                 <h2 className="modal-title">{selectedReport.name}</h2>
+
                 <div className="modal-details-list">
                   <div className="modal-detail-row">
                     <span className="modal-label">Edad:</span>{" "}
                     <span className="modal-value">
-                      {selectedReport.age} años
+                      {selectedReport.age ? `${selectedReport.age} años` : "No especificada"}
                     </span>
                   </div>
                   <div className="modal-detail-row">
                     <span className="modal-label">Ubicación:</span>{" "}
                     <span className="modal-value">
-                      {selectedReport.last_seen}
+                      {selectedReport.last_seen || "No especificada"}
                     </span>
                   </div>
+                  
+                  {/* Nueva fila para el número de teléfono */}
+                  {selectedReport.contact_phone && (
+                    <div className="modal-detail-row">
+                      <span className="modal-label">Teléfono:</span>{" "}
+                      <span className="modal-value">
+                        {selectedReport.contact_phone}
+                      </span>
+                    </div>
+                  )}
+                  
                 </div>
+
+               
                 <a
                   href={`https://wa.me/${selectedReport.contact_phone?.replace(
                     /\D/g,
